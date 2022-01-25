@@ -1,8 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 function Header() {
+  useEffect(() => {
+    const header = document.querySelector(".topnav");
+    if(window.innerWidth < 768) {
+      header.classList.add("responsive");
+    } else {
+      header.classList.remove("responsive");
+    }
+  }, []);
+
     return (
       <div className="header">
         <div className="hero">
@@ -32,7 +41,7 @@ function Header() {
             <a href="#home" className="active">
               <span>HOTEL</span>
             </a>
-            <a href="" className="icon" onClick={togglenavbar}>
+            <a href="" className="icon">
               <FontAwesomeIcon icon={faBars} />
             </a>
           </div>
@@ -46,16 +55,6 @@ function Header() {
   }
 
 
-  
-function togglenavbar(e) {
-    var x = document.getElementById("myTopnav");
-    e.preventDefault();
-  
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-  }
+
   
   export default Header;
